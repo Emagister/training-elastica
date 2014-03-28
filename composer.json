@@ -1,0 +1,29 @@
+{
+    "name": "kata/php",
+    "description": "elastica Test",
+    "keywords": ["elastica","ElasticSearch"],
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": "master",
+        "mockery/mockery": "dev-master@dev"
+    },
+    "require": {
+        "ruflin/Elastica": "dev-master"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Oriol Gonzalez",
+            "email": "oriolgm@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "": "src/"
+        }
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "minimum-stability": "dev"
+}
