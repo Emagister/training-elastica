@@ -5,7 +5,7 @@ use ElasticaTest\Indexer;
 use ElasticaTest\Searcher;
 use Elastica;
 
-class IndexerTest extends \PHPUnit_Framework_TestCase
+class SearcherTest extends \PHPUnit_Framework_TestCase
 {
     const INDEX_NAME = 'twitter';
     const TYPE_NAME = 'tweet';
@@ -18,15 +18,16 @@ class IndexerTest extends \PHPUnit_Framework_TestCase
         $this->indexer = new Indexer(new \Elastica\Client(), self::INDEX_NAME, self::TYPE_NAME);
         $this->indexer->deleteIndex();
         $this->indexer->build();
+
+        // Add documents to the index
+        $this->indexer->addTweets($this->getTwitts());
     }
 
     /**
      * @test
      */
-    public function it_should_add_documents()
+    public function it_should_search_by_term()
     {
-        $this->indexer->addTweets($this->getTwitts());
-
         $searcher = new Searcher($this->indexer);
         $result = $searcher->searchByTerm('Oriol');
 
@@ -42,8 +43,6 @@ class IndexerTest extends \PHPUnit_Framework_TestCase
      */
     public function it_should_search_by_skill()
     {
-        $this->indexer->addTweets($this->getTwitts());
-
         $searcher = new Searcher($this->indexer);
         $result = $searcher->searchBySkills(['php']);
 
